@@ -42,7 +42,7 @@ public class RestController2 {
     }
 
     // Dto 타입을 반환하는 메소드
-    @GetMapping("/dat02/task5")
+    @GetMapping("/day02/task5")
     @ResponseBody
     public TaskDto method5(){
         TaskDto taskDto = new TaskDto();

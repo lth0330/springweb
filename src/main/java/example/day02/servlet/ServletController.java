@@ -38,37 +38,33 @@ public class ServletController extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("ServletController.doGet");
-        String data = req.getParameter("data");
-        System.out.println("data = " + data);
-        resp.getWriter().println("Client Response : Hi");
-
+    // 3. HTTP 메소드 이란? GET,POST,PUT,DELETE 으로 통신 방법
+    // 서블릿 객체는 요청이 끝나도 사라지지 않는다. 다음 요청에 재사용
+    // HttpServletRequest(요청정보), HttpServletResponse(응답정보) 객체는 요청이 끝나면 사라진다.
+    // 3-1 GET
+    @Override protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ServletController.doGet");  // soutm : 현재 메소드 출력
+        // * HTTP 요청시 포함된 매개변수 확인 , http://localhost:8080/day02/servlet?data=아무값
+        String data = req.getParameter("data"); System.out.println("data = " + data);
+        // * HTTP 요청시 클라이언트에게 응답
+        resp.getWriter().println("Client Response : Hi~");
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // 3-2 POST , 브라우저(크롬)의 주소입력창에 요청은 무조건 GET 방식 이므로 POST,PUT,DELETE는 포스트맨VS탈렌드API 사용
+    @Override protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("ServletController.doPost");
-        String data = req.getParameter("data");
-        System.out.println("data = " + data);
-        resp.getWriter().println("Client Response : Hi");
+        String data = req.getParameter("data"); System.out.println("data = " + data);
+        resp.getWriter().println("Client Response : Hi~");
     }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // 3-3 PUT ,
+    @Override protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("ServletController.doPut");
-        String data = req.getParameter("data");
-        System.out.println("data = " + data);
-        resp.getWriter().println("Client Response : Hi");
-
+        String data = req.getParameter("data");  System.out.println("data = " + data);
+        resp.getWriter().println("Client Response : Hi~");
     }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // 3-4 DELETE
+    @Override protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("ServletController.doDelete");
-        String data = req.getParameter("data");
-        System.out.println("data = " + data);
-        resp.getWriter().println("Client Response : Hi");
+        String data = req.getParameter("data"); System.out.println("data = " + data);
+        resp.getWriter().println("Client Response : Hi~");
     }
 }

@@ -4,10 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller // HTTP 기능 + 빈 등록
 public class RestController2 {
     // 1. 100을 반환하는 메소드
-    @GetMapping("/day02/task")  // was(톰갯)주소/내가정의한주소, localhost:8080/day02/task
+    @GetMapping("/day02/task1")  // was(톰갯)주소/내가정의한주소, localhost:8080/day02/task
     @ResponseBody // Response(응답)Body(객체지향) : 응답 자료 자동 타입변환,
     // java(객체지향) <---> HTTP(문자), JAVA는 INT를 반환하겠다고 하지만 HTTP는 모른다.
     // 즉 ] JAVA 타입을 자동으로 HTTP contents Type로 변환해준다. int -> application/json
@@ -15,4 +18,38 @@ public class RestController2 {
         System.out.println("RestController2.method1");
         return 100;
     }
-}
+    // 2. 문자열 반환하는 메소드
+    @GetMapping("/day02/task2")
+    @ResponseBody
+    public String method2(){
+        System.out.println("RestController2.method2");
+    return "유재석";
+    }
+    @GetMapping("/day02/task3")
+    @ResponseBody
+    public Map<String ,Object> method3(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("유재석",50);
+        map.put("강호동",60);
+        return map;
+    }
+
+    // boolean 타입을 반환하는 매소드
+    @GetMapping("/day02/task4")
+    @ResponseBody
+    public boolean method4(){
+        return true;
+    }
+
+    // Dto 타입을 반환하는 메소드
+    @GetMapping("/dat02/task5")
+    @ResponseBody
+    public TaskDto method5(){
+        TaskDto taskDto = new TaskDto();
+        taskDto.name = "유재석"; taskDto.point = 10;
+        return taskDto;
+    }
+    // 즉] String을 제외한 자바의 대부분 타입은 application/json으로 HTTP Content-Type으로 설정된다.
+} // class end
+
+class TaskDto{String name; int point;} // Dto

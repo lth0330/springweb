@@ -57,6 +57,8 @@ public class Exam1 {
                       개발자입장                   스프링 프레임워크
                     @RestController ----------> @RestController 추상한 구현체(클래스)들이 자동 실행 (동적 실행)
 
+            6. 동적 로딩이란? 리플렉션, 실행중에 클래스를 읽어와서 객체 생성과정
+                Class.forName ("com.mysql.cj.jdbd.Driver") : jdbc연동에 필요한 Driver 객체 생성한다.
         */
     }
 }

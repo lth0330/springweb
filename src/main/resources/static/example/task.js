@@ -29,4 +29,51 @@ const func3 = () => { }
         4. 사용법
 */
 //axios.HTTP메소드명("통신할 주소") VS 탈렌드API
+// [1]
 axios.get("http://localhost:8080/day03/task")
+
+// 프론트서버와 백엔드서버가 같다면 도메인 생략 가능
+// [2] axios.HTTP메소드명("통신할주소").then( ()=>{} );
+axios.delete("/day03/task?name=유재석").then((response)=>{console.log(response.data);})
+
+// [3] axios.HTTP메소드명
+axios.post("/day03/task?age=40")
+.then((response) => {console.log (response.data);})
+.catch( (error) => {console.log(error);});
+
+// [4] axios.HTTP메소드명("통신할주소", body
+const obj = {"name": "유재석", "age" : 40}  // 객체 생성
+axios.put("/day03/task", obj)
+.then( (r) => {console.log(r.data);})
+.catch( (e) => {console.log(e);});
+
+// * 비동기통신이란? 요청을 여러개 했을 때 먼저 처리된 응답부터 실행
+    // 즉] 먼저 처리된 로직부터 실행된다. (순서보장안함)
+// * 동기통신이란? 여러개 요청했을 때 먼저 요청한 로직순서대로 응답하는 실행
+    // 즉] 먼저 요청한 로직이 먼저 실행한다. (순서보장)
+
+// [5] async 동기화키워드
+const func5 = async () => {
+    try{
+        // 1) 예외처리한다.
+        // 2) axios 앞에 await 키워드를 이용한 동기화
+        // 3) axios 결과를 변수/상수에 대입 받는다.
+        const response = await axios.get("/day03/task/axios?name=강호동")  // 동기화가 끝낼때 까지 기달리게하기
+        // 4) 결과를 확인한다.
+        console.log(response.data);
+
+    }catch(e){console.log(e)}
+}
+func5();
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-package example.day02.servlet;
+package study.day02.servlet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

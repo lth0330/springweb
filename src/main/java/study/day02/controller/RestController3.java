@@ -1,10 +1,8 @@
-package example.day02.controller;
+package study.day02.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.Objects;
 
 //@Component  // 빈 등록
 //@Controller // HTTP 통신 기능 + 빈 등록 포합    = 사용처 : view(화면) 반환

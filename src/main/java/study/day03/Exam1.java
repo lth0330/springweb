@@ -1,6 +1,6 @@
-package example.day05;
+package study.day03;
 
-public class StartSample {
+public class Exam1 {
     public static void main(String[] args) {
 
     }

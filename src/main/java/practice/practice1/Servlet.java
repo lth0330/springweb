@@ -1,4 +1,4 @@
-package example.practice.practice1;
+package practice.practice1;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;

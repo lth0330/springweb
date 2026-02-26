@@ -44,7 +44,7 @@ public class Exam3 {
 @Getter     // getter 메소드 제공
 @Setter     // setter 메소드 제공
 @ToString   // toString 메소드 제공
-@RequiredArgsConstructor    // final 매개변수 생성자을 자동으로 생성  (final은 초기값을 가져야해서 필수)
+// @RequiredArgsConstructor    // final 매개변수 생성자을 자동으로 생성  (final은 초기값을 가져야해서 필수)
 // @Data = @Getter  + @Setter + @ToString + @RequiredArgsConstructor
 @Builder   // 빌더패턴 사용
 class StudentDto{

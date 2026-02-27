@@ -3,6 +3,7 @@ package practice.practice3;
 
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,12 @@ public class AttendanceController {
         list.add( new AttendanceDto(1,"유재석","2026-2-26","출석"));
         list.add( new AttendanceDto(2,"유재석2","2026-2-26","출석"));
         return list;
+    }
+    @GetMapping("/detail")
+    public AttendanceDto method3(@RequestParam String studentName, @RequestParam String data, @RequestParam String status){
+        AttendanceDto attendanceDto = new AttendanceDto();
+
+        return attendanceDto;
     }
 
 }

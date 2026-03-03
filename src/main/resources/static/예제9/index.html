@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3> 예제9</h3>
+<div>
+    <div>
+        <h3> 입력 구역</h3>
+        내용 : <input id="bcontnet"/> <br>
+        작성자 : <input id="bwriter"/> <br>
+        <button onclick="onWrite()"> 등록하기</button>
+        <br/>
+    </div>
+    <div>
+        <h3> 출력 구역</h3>
+        <table id="boardTable">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                비고
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>안녕하세요</td>
+                <td>유재석</td>
+                <td>2026-02-27</td>
+                <td>삭제</td>
+                <td>수정</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<h3> 메인 페이지</h3>
+<p> http://localhost:8080/예제9/index.html</p>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

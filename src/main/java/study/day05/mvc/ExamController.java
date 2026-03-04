@@ -1,9 +1,7 @@
 package study.day05.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,10 +19,23 @@ public class ExamController {
         List <ExamDto> result = examService.전체조회();
         return result;
     }
-    // W : 쓰기 insert
+    // C : 쓰기 insert
+    @PostMapping
+    public boolean 저장(@RequestBody ExamDto examDto){
+        boolean result = examService.저장(examDto);
+        return result;
+    }
 
     // D : 삭제 delete
-
+    @DeleteMapping
+    public boolean 삭제(@RequestParam  int eno){
+        boolean result = examService.삭제(eno);
+        return result;
+    }
     // U : 수정 update
-
+    @PutMapping
+    public boolean 수정(@RequestBody ExamDto examDto){
+        boolean result = examService.수정(examDto);
+        return  result;
+    }
 }

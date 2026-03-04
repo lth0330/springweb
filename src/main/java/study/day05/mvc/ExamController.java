@@ -38,4 +38,5 @@ public class ExamController {
         boolean result = examService.수정(examDto);
         return  result;
     }
+
 }

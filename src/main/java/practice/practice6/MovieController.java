@@ -10,7 +10,7 @@ import java.util.List;
 public class MovieController {
     @Autowired MovieService movieService;
 
-
+/*
     // 등록
     @PostMapping
     public boolean 영화등록(@RequestBody MovieDto movieDto){
@@ -46,5 +46,5 @@ public class MovieController {
         MovieDto result = movieService.영화수정(movieDto);
         return result;
     }
-
+*/
 }

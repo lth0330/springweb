@@ -66,3 +66,50 @@ const 개별수정 = async (bno) => {
         location.reload();
     }else {alert("수정 실패");}
 }
+
+const cno = new URLSearchParams( location.search ).get( "cno" );
+
+// 댓글 조회
+const 댓글조회 = async( ) => {
+
+    const commentspace = document.querySelector('.commentspace');
+    const response = await axios.get(`/comment?bno=${bno}`);
+    const data = response.data;
+    let html = ""
+    for (let index = 0; index <= data.length - 1; index++) {
+        const commentDto = data[index];
+        html += `<div><span>${commentDto.cwriter}</span></br><span>${commentDto.createDate}</span><span> 
+                            <button onclick="댓글수정()">수정</button> 
+                            <button onclick="댓글삭제()">삭제</button></span>
+                       </div></br>
+                           <div> ${commentDto.ccontent} </div>`
+        // 3) 출력
+        commentspace.innerHTML = html;
+    } //
+}
+    댓글조회();
+// 댓글 등록
+const 댓글등록 = async ()=>{
+
+    const writerInput = document.querySelector(".commentwriter");
+    const contentInput  = document.querySelector(".commentcontent")
+
+    const cwriter = writerInput.value;
+    const ccontent = contentInput.value;
+
+    const obj = {cwriter,ccontent,bno};
+    const response = await axios.post("/comment",obj)
+    const data = response.data;
+
+    if(data){
+        alert("댓글등록 성공");
+    }
+    else {alert("댓글등록 실패")}
+}
+
+
+
+// 댓글 수정
+
+
+// 댓글 삭제

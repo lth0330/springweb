@@ -17,7 +17,27 @@
     <button onclick="개별수정()"> 수정 </button>
     <button onclick="개별삭제()"> 삭제 </button>
 </div>
-
+<div id="replyBox">
+    <div>
+        댓글작성자 : <input class="commentwriter">
+        댓글내용 :<textarea class="commentcontent"> </textarea>
+        <button onclick="댓글등록()">댓글등록</button>
+    </div>
+    <div class="commentspace">
+        <div  style="margin: 20px 0px;">
+            <div><span>유재석</span><span>2026-03-06</span><span> <button onclick="댓글수정()">수정</button> <button onclick="댓글삭제()">삭제</button></span></div>
+            <div> 댓글내용 자리 </div>
+        </div>
+        <div style="margin: 20px 0px;">
+            <div><span>유재석</span><span>2026-03-06</span><span> <button onclick="댓글수정()">수정</button> <button onclick="댓글삭제()">삭제</button></span></div>
+            <div> 댓글내용 자리 </div>
+        </div>
+        <div style="margin: 20px 0px;">
+            <div><span>유재석</span><span>2026-03-06</span><span> <button onclick="댓글수정()">수정</button> <button onclick="댓글삭제()">삭제</button></span></div>
+            <div> 댓글내용 자리 </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- axios -->
 <script src="detail.js"></script>
 

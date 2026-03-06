@@ -11,7 +11,7 @@ import java.util.List;
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;
-
+/*
     // 등록
     public boolean 영화등록(MovieDto movieDto){
         MovieEntity saved = movieRepository.save(movieDto.toEntity());
@@ -19,7 +19,7 @@ public class MovieService {
         if (saved.getMno()>=1) return true;
         return false;
     }
-/*
+
     // 전체 조회
     public List<MovieDto> 영화전체조회(){
         List<MovieEntity> movieEntityList = movieRepository.findAll();

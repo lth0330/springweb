@@ -4,6 +4,7 @@ package example.종합.예제10.board.service;
 import example.종합.예제10.board.dto.BoardDto;
 import example.종합.예제10.board.entity.BoardEntity;
 import example.종합.예제10.board.repository.BoardRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,10 +56,43 @@ public class BoardService {
         if (optional.isPresent()){
             BoardEntity entity = optional.get();
             BoardDto boardDto  = entity.toDto();// 3. 앤티티를 Dto로 변환
-            
+
             // 4. 반환
             return boardDto; // 조회 성공
         }
         return null;  // 조회 실패
+    }
+
+    // 게시물 (개별)수정
+    @Transactional
+    public boolean 수정(BoardDto boardDto){
+        // 1. 수정할 게시물 번호로 앤티티 찾기
+        Optional<BoardEntity> optional = boardRepository.findById(boardDto.getBno());
+
+        // 2. 만약에 앤티티가 존재하면
+        if (optional.isPresent()){      // 3. 앤티티 수정한다 <영속성>
+            BoardEntity updateEntity = optional.get();
+            updateEntity.setBcontent(boardDto.getBcontent());
+            updateEntity.setBtitle(boardDto.getBtitle());
+            updateEntity.setBwriter(boardDto.getBwriter());
+            return true;
+        }
+        // 4. 반환한다.
+        return false;
+    }
+
+    // 게시물 (개별) 삭제
+    public boolean 삭제(int bno){
+        // 1. 삭제할 앤티티 존재하면
+        boolean exists = boardRepository.existsById(bno);  // 앤티티가 존재gkaus
+
+        // 2. 만약 앤티티가 삭제
+        if (exists){
+            boardRepository.deleteById(bno);
+
+            // 3. 반환
+            return true;
+        }
+        return false;
     }
 }

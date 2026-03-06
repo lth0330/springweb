@@ -32,5 +32,16 @@ public class BoardController {
         return result;
     }
 
+    @PutMapping
+    public boolean 수정(@RequestBody BoardDto boardDto){
+        boolean result = boardService.수정(boardDto);
+        return result;
+    }
+
+    @DeleteMapping
+    public boolean 삭제(@RequestParam int bno){
+        boolean result = boardService.삭제(bno);
+        return result;
+    }
 
 }

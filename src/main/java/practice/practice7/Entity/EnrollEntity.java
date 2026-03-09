@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import practice.practice7.BaseTime;
+import practice.practice7.Dto.EnrollDto;
 import study.day07.연관관계.BoardEntity;
 
 @NoArgsConstructor
@@ -29,6 +30,17 @@ public class EnrollEntity extends BaseTime {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "studentId")
     private StudentEntity studentEntity;
+
+    public EnrollDto toDto(){
+        return EnrollDto.builder()
+                .enrollId(enrollId)
+                .status(status)
+                .courseEntity(courseEntity)
+                .studentEntity(studentEntity)
+                .crateDate(getCreateDate().toString())
+                .updateDate(getUpdateDate().toString())
+                .build();
+    }
 }
 
 

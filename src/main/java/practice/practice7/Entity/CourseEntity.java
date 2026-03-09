@@ -3,6 +3,7 @@ package practice.practice7.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import practice.practice7.BaseTime;
+import practice.practice7.Dto.CourseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +27,11 @@ public class CourseEntity extends BaseTime {
     @Builder.Default
     private List<EnrollEntity> enrollEntityList = new ArrayList<>();
 
-
+    public CourseDto toDto(){
+        return CourseDto.builder().courseId(courseId)
+                .courseName(courseName)
+                .crateDate(getCreateDate().toString())
+                .updateDate(getUpdateDate().toString())
+                .build();
+    }
 }

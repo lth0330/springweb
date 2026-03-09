@@ -45,4 +45,22 @@ public class ReplyEntity {
             - 특징 : 초기 로딩이 느리다, 재사용시 빠르다, *불필요한 정보까지 있을경우 성능 저하*
         FetchType.LAZY  :  해당 앤티티 조회시 참조 앤티티는 조회하지 않는다. < 참조 앤티티 호출시 조회 >
             - 특징 : 초기 호딩이 빠르고 , 재사용성 느리다.   * 필요한 정보만 호출하기 때문에 적절하게 사용가능 < 지연 로딩 >
+
+
+    - 단방향 / 양방향 활용
+        - 만약에 1번 카테고리에 게시물을 등록 한다면, ** fk 필드에 fk 값이 아닌 fk 앤티티를 대입한다.
+
+            Board saveEntity = new BoardEntity();
+            saveEntity.setCategory(1) ; [X]
+
+            Category category = repository.findById(1).get();
+            saveEntity.setCategory(category); [O]
+            repository.save(saveEntity);
+
+        - 만약에 3번 게시물에 댓글을 등록한다면,
+            ReplyEntity saveEntity = new RelyEntity();
+                BoardEntity board = repository.FindById(3).get();
+                saveEntity.setBoardEntity(board)
+                repository.save(saveEntity)
+
  */

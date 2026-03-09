@@ -18,6 +18,9 @@ public class MovieDto {
     private String mopen;
     private String mrating;
 
+    private String crateDate;
+    private String updateDate;
+
 
     public MovieEntity toEntity(){
         return MovieEntity.builder()

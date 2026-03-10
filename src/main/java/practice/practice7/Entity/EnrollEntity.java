@@ -35,8 +35,8 @@ public class EnrollEntity extends BaseTime {
         return EnrollDto.builder()
                 .enrollId(enrollId)
                 .status(status)
-                .courseEntity(courseEntity)
-                .studentEntity(studentEntity)
+                .courseDto(courseEntity.toDto())
+                .studentDto(studentEntity.toDto())
                 .crateDate(getCreateDate().toString())
                 .updateDate(getUpdateDate().toString())
                 .build();

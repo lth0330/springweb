@@ -18,8 +18,8 @@ public class EnrollDto {
     private Integer enrollId;
     private String status;
 
-    private CourseEntity courseEntity;
-    private StudentEntity studentEntity;
+    private CourseDto courseDto;
+    private StudentDto studentDto;
 
     private String crateDate;
     private String updateDate;
@@ -28,8 +28,8 @@ public class EnrollDto {
         return EnrollEntity.builder()
                 .enrollId(enrollId)
                 .status(status)
-                .courseEntity(courseEntity)
-                .studentEntity(studentEntity).build();
+                .courseEntity(courseDto.toEntity())
+                .studentEntity(studentDto.toEntity()).build();
 
     }
 }

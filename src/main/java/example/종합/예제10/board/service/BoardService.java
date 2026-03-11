@@ -28,6 +28,7 @@ public class BoardService {
         // 2. JPA 이용한 entity 저장
         saveEntity = boardRepository.save(saveEntity);
 
+
         // 3. PK 생성여부 판단
         if (saveEntity.getBno() >= 1) return true;
         return false;

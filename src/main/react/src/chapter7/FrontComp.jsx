@@ -1,0 +1,27 @@
+/*
+컴포넌트 내보내기?
+다른 jsx에서 해당하는 컴포넌트 사용하기 위해 
+부모 컴포넌트로부터 상태변경함수를 props로 받아서
+props {} 구조분해할당하여 a 클릭하면 상태를 front로 수정한다.
+
+a 마크업을 클릭하면 페이지이동 차단 : event.preventDefault();
+*/
+
+export default function FrontComp(props){
+
+  return(<>
+      <li>
+        <a href="/" onClick={()=>{
+          event.preventDefault();
+          props.onSetMode('front')
+          }}>프론트앤드</a>
+        </li>
+      <ul>
+        <li>HTML5</li>
+        <li>CSS5</li>
+        <li>????</li>
+        <li>JAVA</li>
+      </ul>
+
+  </>)
+}

@@ -1,10 +1,10 @@
 
-function FrontComp(){
+function FrontComp(props){
   // { /*   */ } 중괄호 안에 /* */ 쓰기
   return(<>
       {/* JSX(return에서 사용되는 (xml)문법)에서 주석처리하는 방법*/}
       <li>
-        <a href="/" onClick={ ( ) => { props.onMyEvent1() }} >프론트엔드</a>
+        <a href="/" onClick={ ( ) => {event.preventDefault(); props.onMyEvent1() }} >프론트엔드</a>
       </li>
       <ul>
         <li>HTML</li>

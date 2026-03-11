@@ -1,6 +1,6 @@
 
 
-export default function FrontComp(props){
+export default function FrontComp(){
   return(<>
       <li>프론트앤드</li>
       <ul>

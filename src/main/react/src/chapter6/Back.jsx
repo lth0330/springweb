@@ -1,8 +1,9 @@
 
-const BackComp = ({ onMyEvent2}) => {
+const BackComp = ({  onMyEvent1,onMyEvent2}) => {
   return(<>
     <li>
-      <a href="/" onClick={ ( ) => {onMyEvent2("백앤드 클릭됨")}}>벡앤드</a>
+      <a href="/" onClick={ ( ) => {onMyEvent1("백앤드 클릭됨1")}}>벡앤드1</a><br/>
+      <a href="/" onClick={ ( ) => {onMyEvent1("백앤드 클릭됨2")}}>벡앤드2</a>
     </li>
     <ul>
         <li>HTML5</li>

@@ -8,7 +8,7 @@ export default function Exam2(props){
   const [mode, setMode] = useState('both')   //상태 변수
 
   // 2) 상태(값) 변경하는 함수 : set변수명(새로운값);   
-  const handleSetMode = (mode) => {setMode(mode);}
+  const handleSetMode = (mode) => {setMode(mode);}  // Front에서 한것처럼 바로 할거면 이거 안써도 됨
 
   // 3) 컴포넌트 저장용 변수
   let contents ="";
@@ -22,10 +22,10 @@ export default function Exam2(props){
     contents =<>
       <BackComp setMode = {setMode}/>
     </>
-  }else{
+  }else if(mode =="both"){
     contents=<>
-    <FrontComp onSetMode={(mode)=>{handleSetMode(mode);}}/>
-    <BackComp setMode = {setMode}/>
+    <FrontComp onSetMode={setMode}/>
+    <BackComp setMode = {(mode)=>{setMode(mode);}}/>
     </>
   }
 

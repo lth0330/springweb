@@ -48,6 +48,7 @@ confirm.log(a); //  구조분해 한 변수를 사용한다.
       
   </>)
 }
+
 // (1) 구조분해 없이 여러개 속성을 한번에 받기
 function MyComponent(props){
   // JSX에서는 주석이 안됨

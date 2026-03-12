@@ -1,0 +1,15 @@
+
+.backEnd{
+  color: blue;
+}
+
+#backEndSub{
+  font-family: bold;
+  font-size: 1.5em;
+}
+
+.warnings{
+  color: white;
+  background-color: red;
+  font-size: 1.2em;
+}

@@ -2,9 +2,13 @@ package practice.practice7.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import practice.practice7.Dto.CourseDto;
 import practice.practice7.Dto.EnrollDto;
+import practice.practice7.Dto.StudentDto;
+import practice.practice7.Entity.CourseEntity;
 import practice.practice7.Entity.EnrollEntity;
 
+import practice.practice7.Entity.StudentEntity;
 import practice.practice7.repository.CourseRepository;
 import practice.practice7.repository.EnrollRepository;
 import practice.practice7.repository.StudentRepository;
@@ -21,9 +25,31 @@ public class EnrollService {
     @Autowired
     private CourseRepository courseRepository;
 
+
+    // 과정등록
+    public boolean 과정등록(CourseDto courseDto) {
+        CourseEntity courseEntity = courseDto.toEntity();
+        CourseEntity saved = courseRepository.save(courseEntity);
+
+        if (saved.getCourseId() >= 1) return true;
+        return false;
+
+    }
+    //=========================================================//
+    // 학생등록
+    public boolean 학생등록(StudentDto studentDto) {
+        StudentEntity studentEntity = studentDto.toEntity();
+        StudentEntity saved = studentRepository.save(studentEntity);
+
+        if (saved.getStudentId() >= 1) return true;
+        return false;
+    }
+    //=========================================================//
+    // 수강등록
     public boolean 수강등록(EnrollDto enrollDto){
         EnrollEntity enrollEntity = enrollDto.toEntity();
         EnrollEntity saved = enrollRepository.save(enrollEntity);
+
         if(saved.getEnrollId() != null){
 
         }
@@ -32,6 +58,7 @@ public class EnrollService {
         return false;
     }
 
+    // 수강조회
     public EnrollDto 수강조회(int enrollId){
         Optional<EnrollEntity> optional = enrollRepository.findById(enrollId);
 

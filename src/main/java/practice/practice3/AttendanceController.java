@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/attendance")
@@ -28,10 +27,22 @@ public class AttendanceController {
         return list;
     }
     @GetMapping("/detail")
-    public AttendanceDto method3(@RequestParam String studentName, @RequestParam String data, @RequestParam String status){
-        AttendanceDto attendanceDto = new AttendanceDto();
-
+    public AttendanceDto method3(@RequestParam int ano){
+        AttendanceDto attendanceDto = new AttendanceDto(1,"유재석","2026-2-26","출석");
+        
         return attendanceDto;
+    }
+    
+    @DeleteMapping
+    public boolean method4(@RequestParam int ano){
+        System.out.println("ano = " + ano);
+        return true;
+    }
+    
+    @PutMapping
+    public boolean method5(@RequestBody AttendanceDto attendanceDto){
+        System.out.println("attendanceDto = " + attendanceDto);
+        return true;
     }
 
 }

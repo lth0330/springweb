@@ -1,12 +1,14 @@
 package practice.practice2;
 
-public class BoardBto {
+
+
+public class BoardDto {
     private int bno;
     private String bcontent;
     private String bwriter;
 
-    public BoardBto(){}
-    public BoardBto(int bno, String bwriter, String bcontent) {
+    public BoardDto(){}
+    public BoardDto(int bno, String bwriter, String bcontent) {
         this.bno = bno;
         this.bwriter = bwriter;
         this.bcontent = bcontent;
@@ -38,7 +40,7 @@ public class BoardBto {
 
     @Override
     public String toString() {
-        return "BoardBto{" +
+        return "BoardDto{" +
                 "bno=" + bno +
                 ", bcontent='" + bcontent + '\'' +
                 ", bwriter='" + bwriter + '\'' +

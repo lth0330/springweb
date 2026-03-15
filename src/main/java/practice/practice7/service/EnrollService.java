@@ -46,15 +46,32 @@ public class EnrollService {
     }
     //=========================================================//
     // 수강등록
-    public boolean 수강등록(EnrollDto enrollDto){
-        EnrollEntity enrollEntity = enrollDto.toEntity();
+    public boolean 수강등록(EnrollDto enrollDto) {
+
+        // 과정
+        int courseId = enrollDto.getCourseDto().getCourseId();
+        Optional<CourseEntity> optionalCourse = courseRepository.findById(courseId);
+        if (optionalCourse.isPresent()) return true;
+        CourseEntity courseEntity = optionalCourse.get();
+
+        // ===========================================//
+        // 학생
+        int studentId = enrollDto.getStudentDto().getStudentId();
+        Optional<StudentEntity> optionalStudent = studentRepository.findById(studentId);
+        if (optionalStudent.isPresent()) return true;
+        StudentEntity studentEntity = optionalStudent.get();
+
+        //=========================================================
+        EnrollEntity enrollEntity = EnrollEntity.builder()
+                .status(enrollDto.getStatus())
+                .courseEntity(courseEntity)
+                .studentEntity(studentEntity)
+                .build();
+
+
         EnrollEntity saved = enrollRepository.save(enrollEntity);
 
-        if(saved.getEnrollId() != null){
-
-        }
-
-        if (saved.getEnrollId()>=1)return true;
+        if(saved.getEnrollId() >= 1) return true;
         return false;
     }
 
@@ -62,14 +79,12 @@ public class EnrollService {
     public EnrollDto 수강조회(int enrollId){
         Optional<EnrollEntity> optional = enrollRepository.findById(enrollId);
 
-        if (optional.isPresent()){
+        if(optional.isPresent()){
             EnrollEntity entity = optional.get();
             EnrollDto enrollDto = entity.toDto();
-
             return enrollDto;
         }
         return null;
-
     }
 }
 

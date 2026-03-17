@@ -35,7 +35,7 @@ public interface TodoRepository
     // 3] 네이티브 메소드
 
     // 3-4
-    @Query( value = "select * from todo where title like %:title%" , nativeQuery = true )
+    @Query( value = "select * from todo where title like %:keyword%" , nativeQuery = true )
     Page<TodoEntity> query4(String keyword, Pageable pageable);
 
     // 3-3

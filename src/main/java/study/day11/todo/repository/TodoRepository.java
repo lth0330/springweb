@@ -2,6 +2,8 @@ package study.day11.todo.repository;
 
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,7 +29,15 @@ public interface TodoRepository
     // 2-3 : title 이 포함된 조회 , findBy필드명Containing( )
     List< TodoEntity > findByTitleContaining(String title );
 
+    // 2-4 : 매개변수에 pageavle 인터페이스 사용하면 Page 타입으로 반환 가능하다.
+    Page<TodoEntity> findByTitleContaining(String title, Pageable pageable);
+
     // 3] 네이티브 메소드
+
+    // 3-4
+    @Query( value = "select * from todo where title like %:title%" , nativeQuery = true )
+    Page<TodoEntity> query4(String keyword, Pageable pageable);
+
     // 3-3
     @Query( value = "select * from todo where title like %:title%" , nativeQuery = true )
     List<TodoEntity> query3( String title );
@@ -41,6 +51,8 @@ public interface TodoRepository
     // select * from todo where title = :매개변수명; // 매개변수명 앞에 :(콜론) 이용하여 매개변수값 대입
     @Query( value = "select * from todo where title = :title" , nativeQuery = true)
     TodoEntity query1( String title );
+
+
 
     // 4] JPQL
 

@@ -60,6 +60,21 @@ public class TodoController {
         List<TodoDto> result = todoService.query3(title);
         return ResponseEntity.status(200).body(result);
     }
+    // 6. 페이징처리 ( 글 목록 몇개씩 볼건지)
+    @GetMapping("/page") // page는 조회할 페이지 번호, size는 페이지당 조회할 앤티티 개수
+    public ResponseEntity<?> page(@RequestParam int page, @RequestParam int size){
+        return ResponseEntity.ok(todoService.page(page, size));
+    }
+
+    // 7. 페이징 처리2
+    @GetMapping("/page2")
+    public ResponseEntity<?> page2(
+            @RequestParam String keyword, // 검색어
+            @RequestParam(defaultValue = "1" ) int page,
+            @RequestParam(defaultValue = "3") int size){
+        return ResponseEntity.ok(todoService.page2(keyword,page,size));
+    }
+
 
 } // class end
 

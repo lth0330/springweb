@@ -13,6 +13,7 @@ import study.day11.todo.service.TodoService;
 
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor // final 멤버변수 생성자 제공
@@ -41,6 +42,23 @@ public class TodoController {
             @RequestParam String title ){
         TodoDto result = todoService.query1( title );
         return ResponseEntity.ok( result );
+    }
+
+    // 4. title 과 content 개별 조회
+    @GetMapping("/query2")
+    public ResponseEntity<?> query2(
+            @RequestParam String title,
+            @RequestParam String content
+    ){
+        Map<String,Object> result = todoService.query2(title,content);
+        return ResponseEntity.status(200).body(result);
+    }
+
+    // 5. title이 포함된 개별 조회
+    @GetMapping("/qurey3")
+    public ResponseEntity<?> query3(@RequestParam String title){
+        List<TodoDto> result = todoService.query3(title);
+        return ResponseEntity.status(200).body(result);
     }
 
 } // class end

@@ -1,0 +1,45 @@
+아래와 같은 코드에서 클래스내 메소드를 호출 하는 방법 작성하시오. ( 매개변수,반환값 타입 준수 )
+1. 인스턴스(멤버) 메소드일 때
+class User{
+    void login(){
+        System.out.println("로그인");
+    }
+}
+// User user = new User()
+// user.login();
+
+2. static 메소드일 때
+class MathUtil{
+    static int add(int a, int b){
+        return a + b;
+    }
+}
+// MathUtil.add( 3 , 2 ); // a 와 b에 대입할 인자값
+
+3. 싱글톤(Singleton) 내 메소드일 때
+class BoardDao{
+    private static BoardDao instance = new BoardDao();
+    private BoardDao(){}
+    public static BoardDao getInstance(){return instance;}
+    public void insert(){System.out.println("게시물 저장");}
+}
+// BoardDao.getInstance().insert( );
+
+4. IoC / DI 메소드일 때 (Spring)
+@Service
+public class UserService{
+    public void login(){System.out.println("로그인 서비스");}
+}
+// @Autowired UserService userService;
+// userService.login();
+
+5. 같은 클래스 내부 인스턴스 메소드일 때
+class UserService{
+    void checkUser(){
+        System.out.println("사용자 확인");
+    }
+}
+// void login( ) { checkUser(); }
+
+// 관례적으로 User 클래스명 = 첫글자가 대문자이면 클래스명
+// 관례적으로 user 변수명 = 첫글자가 소문자이면 변수/메소드 명

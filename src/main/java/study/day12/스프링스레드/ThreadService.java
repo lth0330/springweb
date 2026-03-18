@@ -30,6 +30,7 @@ public class ThreadService {
     
     // [2]
     @Async // 비동기 : 먼저 반환/응답하고 내부적으로 처리
+    // 사용자한테 바로 결과값을 보여줄필요 없을때 사용 다운로드, (관리자에게 승인 요청, )
     // AppStart 클래스 위에 @EnableAsync 활성화
     public void test2(){
         int result = 0;

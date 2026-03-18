@@ -74,10 +74,8 @@ public class CrawlingService {
                     map.put("name", name);
                     map.put("price", price);
                     map.put("image", image);
-                    System.out.println(map);
 
                     // 6) 리스트에 맵 넣기
-                    list.add(map);
                     System.out.println(list);
                 }
             }

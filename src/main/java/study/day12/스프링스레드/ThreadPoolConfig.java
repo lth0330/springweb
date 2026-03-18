@@ -2,11 +2,12 @@ package study.day12.스프링스레드;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 
-@Configurable   // IOC 빈 어노테이션 종류 중 하나, 빈 등록
+@Configuration  // IOC 빈 어노테이션 종류 중 하나, 빈 등록
 // 주로 미리 만들어진 설정값을 오버라이딩/등록
 public class ThreadPoolConfig {
 

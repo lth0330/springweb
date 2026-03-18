@@ -4,7 +4,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ScjeduleService {
+public class ScheduleService {
 
     // * 컨트롤러 유무랑 상관없이 특정 시간이 되면 서비스 자동 실행 *
     // 비동기 기반의 구조, 목적 : 보안, 자동화 , 백그라운드처리

@@ -23,9 +23,11 @@ dependencies {  // 외부 라이브러리들을 추가하는 곳, 추가된 라�
     runtimeOnly 'com.mysql:mysql-connector-j'        // 2] mySql
     compileOnly 'org.projectlombok:lombok'           // 3] lombok
     annotationProcessor 'org.projectlombok:lombok'   // 3] lombok
-   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // 4] JPA
-   implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // timeleft
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // 4] JPA
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // timeleft
     implementation 'org.jsoup:jsoup:1.22.1'     // Jsoup ( 정적페이지 크롤링 )
+    implementation 'org.seleniumhq.selenium:selenium-java:4.35.0'   // Selenium ( 동적페이지에 대한 크롤링 )
+    implementation 'io.github.bonigarcia:webdrivermanager:6.3.3'    // Selenium ( 크롬브라우저 조작 )
 
 }
 

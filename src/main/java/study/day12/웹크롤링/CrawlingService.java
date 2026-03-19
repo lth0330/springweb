@@ -1,11 +1,20 @@
 package study.day12.웹크롤링;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Service;
 import org.jsoup.nodes.Document;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +92,40 @@ public class CrawlingService {
             System.out.println(e);
         }
         return list;
+    }
+    // [3]
+    public Map<String ,Object> test3(){
+        // 1] 크롬 드라이버 설치
+        WebDriverManager.chromedriver().setup();
+        // 2] 크롤링 할 웹 주소
+        String url = "https://weather.daum.net/?location-regionId=AB33110207&weather-cp=kweather";
+        // 3] 크롬 드라이버 객체 생성
+            // * 드라이버 옵션
+            ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new", "--disable-gpu");    // 크롬을 창으로 안열고 백그라운드 실행
+        WebDriver webDriver = new ChromeDriver(options);
+        // 4] 크롬 드라이버 객체에 크롤링할 주소 넣기
+        webDriver.get(url);
+        // 5] 해당 페이지는 동적(데이터를 표현을 하는데 부분적 시간이 필요) 페이지
+            // new Wait ( 현재크롬 객체 , Duration.ofXXX)
+        WebDriverWait wait = new WebDriverWait(webDriver , Duration.ofSeconds(5)); // 크롤링하기 전에 웹이 동적데이터 가져오는 시간 기달리기
+        // 6] 크롤링할 선택자, element / 요소 / 마크업 / <마크업
+        //  "info_weather" ."num_deg"
+        // WebElement 뱐수명 =  wait(ExpectedConditions.presenceOfElementLocated(By.cssSelector("")));
+        WebElement temp = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".info_weather .num_deg")));
+        System.out.println(temp.getText()); // 확인
+        WebElement temp2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".ico_weather")));
+        System.out.println(temp2.getText()); // 확인
+
+        // 7] 가져온 정보들을 dto/map 구성
+        Map<String ,Object> map = new HashMap<>();
+        map.put("온도", temp.getText());
+        map.put("초미세먼지", temp2.getText());
+
+        // 8] 안전하게 드라이버 객체 종료
+        webDriver.quit();
+
+        return map;
     }
 }
 

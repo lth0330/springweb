@@ -5,6 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Service;
 import org.jsoup.nodes.Document;
+import org.unbescape.javascript.JavaScriptEscape;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -108,10 +110,10 @@ public class CrawlingService {
         webDriver.get(url);
         // 5] 해당 페이지는 동적(데이터를 표현을 하는데 부분적 시간이 필요) 페이지
             // new Wait ( 현재크롬 객체 , Duration.ofXXX)
-        WebDriverWait wait = new WebDriverWait(webDriver , Duration.ofSeconds(5)); // 크롤링하기 전에 웹이 동적데이터 가져오는 시간 기달리기
+        WebDriverWait wait = new WebDriverWait(webDriver , Duration.ofSeconds(3)); // 크롤링하기 전에 웹이 동적데이터 가져오는 시간 기달리기
         // 6] 크롤링할 선택자, element / 요소 / 마크업 / <마크업
         //  "info_weather" ."num_deg"
-        // WebElement 뱐수명 =  wait(ExpectedConditions.presenceOfElementLocated(By.cssSelector("")));
+        // WebElement 변수명 =  wait(ExpectedConditions.presenceOfElementLocated(By.cssSelector("")));
         WebElement temp = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".info_weather .num_deg")));
         System.out.println(temp.getText()); // 확인
         WebElement temp2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".ico_weather")));
@@ -126,6 +128,48 @@ public class CrawlingService {
         webDriver.quit();
 
         return map;
+    }
+
+    // [4] CGV 특정 영화 관련평 크롤링 ( + 무한스크롤)
+    public List<String> test4(){
+        WebDriverManager.chromedriver().setup();
+        // 2] 크롤링 할 웹 주소
+        String url = "https://cgv.co.kr/cnm/cgvChart/movieChart/30000927";
+        // 3] 크롬 드라이버 객체 생성
+        // * 드라이버 옵션
+        ChromeOptions options = new ChromeOptions();
+       //options.addArguments("--headless=new", "--disable-gpu");    // 크롬을 창으로 안열고 백그라운드 실행, 연습할때는 주석처리
+        WebDriver webDriver = new ChromeDriver(options);
+        webDriver.get(url);
+
+        // *** 자바에서 JS 제어 하여 스크롤을 내리는 작업 ***
+        JavascriptExecutor js = (JavascriptExecutor) webDriver; // (현재)크롬객체 에서 JS객체 꺼내기
+        js.executeScript("window.scrollTo( 100, document.body.scrollHeight ); "); // .executeScript( "JS문법");
+        // window.scrollTo( 100 , document.body.scrollHeight );
+        // document.body.scrollHeight : 현재 화면에서 스크롤 전체 길이 = 높이 = 300px , 상단꼭지점=0, 하단꼭지점=300
+        // .scrollTo( 이동할위치, 전체길이 )
+        try{ Thread.sleep( 3000 ); }catch ( Exception e ){ } // 1초간 대기
+
+        // *** 크롤링할 선택자로 요소 크롤링 , reveiwCard_txt__RrTgu
+        List<String> list = new ArrayList<>();
+        for( int page = 1 ; page <= 10 ; page++ ){
+            int startCount = list.size(); // 특정 반복문 시작, 현재 리뷰 개수
+            // WebElement 1 개요소 vs // List<WebElement> 여러개 요소
+            // wait.until vs webDriver.find
+            List<WebElement> elements = webDriver.findElements( By.cssSelector(".reveiwCard_txt__RrTgu"));
+            for( WebElement element : elements ){
+                // 만약에 리스트에 없는 리뷰이면 리스트 추가 , 아니면 추가 안한다.
+                String review = element.getText();
+                if( list.contains( review ) ){ continue; } // .contains( 찾을값 ) 만약에 찾을값이 존재하면 true 아니면 false
+                else{ list.add( review ); }
+            } // for2 end
+            int endCount = list.size( ) ; // 특정 반복문이 한번 종료 되었을때
+            if( startCount == endCount ){ break; } // 리뷰개수가 시작과 끝 개수가 같다면 크롤링 중지
+            // *** 스크롤 내리기 작업 **
+            js.executeScript("window.scrollTo(100,document.body.scrollHeight ); ");
+            try{ Thread.sleep( 3000 ); }catch ( Exception e ){ } // 1초간 대기
+        }
+        return list;
     }
 }
 

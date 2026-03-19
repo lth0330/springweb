@@ -31,4 +31,8 @@ public class CrawlingController {
     public ResponseEntity<?> test3(){
         return ResponseEntity.ok(crawlingService.test3());
     }
+    @GetMapping("/test4")
+    public ResponseEntity<?> test4() {
+        return ResponseEntity.ok(crawlingService.test4());
+    }
 }

@@ -19,4 +19,11 @@ public class ApiController {
     public ResponseEntity<?> test1(){
         return ResponseEntity.ok(apiService.test1());
     }
+
+    // [2]
+    @GetMapping("/test2")
+    public ResponseEntity<?> test2(){
+        return ResponseEntity.ok(
+                apiService.test2() );
+    }
 }

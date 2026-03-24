@@ -30,7 +30,10 @@ dependencies {  // 외부 라이브러리들을 추가하는 곳, 추가된 라�
     implementation 'io.github.bonigarcia:webdrivermanager:6.3.3'    // Selenium ( 크롬브라우저 조작 )
     implementation 'org.springframework.boot:spring-boot-starter-webflux' // HTTP 요청
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml' // XML 파싱
-    implementation 'org.springframework.security:spring-security-crypto:6.4.4' // ???
+    implementation 'org.springframework.security:spring-security-crypto:6.4.4' // 비크립트 - 세션?
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'    // JWT
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'  // JWT
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6' // JWT
 }
 
 tasks.named('test') {

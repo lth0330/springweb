@@ -25,7 +25,7 @@ public class BoardDto {
     private String updateDate;
 
     // + toEntity
-    public BoardEntity boardEntity(){
+    public BoardEntity toEntity(){
         return BoardEntity.builder()
                 // .bno() 는 auto이기때문에 생략가능
                 .btitle(btitle)

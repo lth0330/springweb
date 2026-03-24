@@ -14,7 +14,7 @@ import springweb.member.entity.MemberEntity;
 public class MemberDto {
 
     private Long mno;
-    private  String mid;
+    private String mid;
     private String mpwd;
     private String mname;
 

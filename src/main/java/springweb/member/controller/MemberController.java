@@ -23,17 +23,17 @@ public class MemberController {
 
     // [2] 로그인 post = select = find
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody MemberDto loginDto, HttpSession session){
-        // 로그인 후 유지하기 위해서 세션 사용
+    public ResponseEntity<?> login(@RequestBody MemberDto loginDto , HttpSession session ){
         // 1] 입력받은 아이디/비밀번호를 서비스에게 보낸다.
-        boolean result = memberService.login(loginDto);
+        boolean result = memberService.login( loginDto );
         // 2] 만약에 로그인 성공이면 세션 부여
-            // 1) 매개변수에 HttpSession session 받는다
-            // 2) 로그인 성공한 회원의 아디디를 세션객체내 저장,  .setAttribute("속성명", 속성값);
-            session.setAttribute("loginMid",loginDto.getMid());
+        if( result ) {
+            // 1) 매개변수에 HttpSession session 받는다.
+            // 2) 로그인 성공한 회원의아이디를 세션객체내 저장 , .setAttribute( "속성명" , 속성값 );
+            session.setAttribute("loginMid", loginDto.getMid());
+        }
         // 3] 아니면 실패
-        return ResponseEntity.ok(result);
-
+        return ResponseEntity.ok( result );
     }
 
     // [3] 로그아웃 == GET == 세션 초기화

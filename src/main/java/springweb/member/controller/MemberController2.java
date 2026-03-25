@@ -48,7 +48,7 @@ public class MemberController2 {
             return ResponseEntity.ok(false);
         }
         // 3] 토큰만 추출 , 문자열.replace("기준문자", "새로운문자")
-        token.replace("Bearer ",""); // Bearer 없애기, 띄어쓰기 주의
+         token = token.replace("Bearer ",""); // Bearer 없애기, 띄어쓰기 주의
 
         // 4] 토큰에서 값(클레임) 추출
         String mid =jwtService.getClaim(token);

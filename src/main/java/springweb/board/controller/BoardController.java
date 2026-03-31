@@ -50,5 +50,25 @@ public class BoardController {
         return  ResponseEntity.ok( result );
     }
 
+    // [1-3] 회원제 글등록 + 토큰 정보 + 첨부파일(content-type : mutipart/form-data)
+    @PostMapping("/write3")
+    public ResponseEntity<?> write3(BoardDto boardDto, @RequestHeader("Authorization") String token){
+        // @RequestBody 사용하지 않는다. 왜? 첨부파일 매핑하기 위해
+        // 2] dto에 MutopartFile 인터페이스 포함하낟.
+
+        if (token == null || !token.startsWith("Bearer")){
+            return ResponseEntity.ok(false);    // 비로그인이라서 로그인 실패
+        }
+        // * 토큰만 추출*
+        token = token.replace("Bearer ","");
+        // 3) 토큰에서 클레임(값) 꺼내기
+        String loginMid = jwtService.getClaim(token);
+        if (loginMid == null){return ResponseEntity.ok(false);}
+
+        // 4)서비스에게 입력받은 값과 세션에 저장된 값 전달한다.
+        boolean result = boardService.write( boardDto , loginMid );
+        return  ResponseEntity.ok( result );
+    }
+
 }
 

@@ -31,10 +31,10 @@ const GlobalTop = (props) => {
 
     // onClick = {함수선언또는 함수명}
     return (<li key={data.id} >
-    
-      <a href={data.id} onClick={(e)=>{
-      e.preventDefault();   // a 마크업에 관련된 기본 기능 제거 ( 깜빡거리는 기능 제거)
-      props.myListClick(e.target.dataset.id);
+
+      <a href={data.id} data-id={data.num} onClick={(e) => {
+        e.preventDefault();   // a 마크업에 관련된 기본 기능 제거 ( 깜빡거리는 기능 제거)
+        props.myListClick(e.target.dataset.id);
 
       }}> {data.id}</a>
 
@@ -45,14 +45,8 @@ const GlobalTop = (props) => {
   console.log("[2] return 실행")
   return (<>
     <nav>
-      <ul>{
-        myList.map((data) => {
-          return (<li key={data.id}>
-            <a> {data.id}</a>
-
-          </li>)
-        })
-      }
+      <ul>
+        { listTag }
       </ul>
     </nav>
 
@@ -62,17 +56,17 @@ const GlobalTop = (props) => {
 
 export default function LocalJsonFetcher(props) {
 
-  const [ myResult, setMyResult ] = useState({});  // 상태변수 , 배열 아닌 객체 , 빈객체
+  const [myResult, setMyResult] = useState({});  // 상태변수 , 배열 아닌 객체 , 빈객체
   console.log(myResult);  // 확인
 
   return (<>
     <h3> 내부 서버 통신</h3>
-    <GlobalTop myListClick ={async(num) =>{
-        console.log("클릭",num)
+    <GlobalTop myListClick={async (num) => {
+      console.log("클릭", num)
 
-        const response = await axios.get(`./json/dto${num}.json`)
-        const result = response.data;
-        setMyResult(result);
+      const response = await axios.get(`./json/dto${num}.json`)
+      const result = response.data;
+      setMyResult(result);
 
 
     }}></GlobalTop>

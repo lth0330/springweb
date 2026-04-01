@@ -46,13 +46,31 @@ const GlobalTop = (props) => {
   return (<>
     <nav>
       <ul>
-        { listTag }
+        {listTag}
       </ul>
     </nav>
 
   </>)
-}
 
+  
+}
+const ContentBody = (props) => {
+    return (<>
+
+      <div>
+        <h2>{props.myResult.name}</h2>
+        <ul>
+          <li> num : { props.myResult.num}</li>
+          <li> id : { props.myResult.id}</li>
+          <li> cell : { props.myResult.cell}</li>
+          <li> description : { props.myResult.description}</li>
+
+        </ul>
+
+      </div>
+
+    </>)
+  }
 
 export default function LocalJsonFetcher(props) {
 
@@ -70,5 +88,12 @@ export default function LocalJsonFetcher(props) {
 
 
     }}></GlobalTop>
+
+    <ContentBody myResult={myResult}></ContentBody>
   </>)
 }
+
+/*
+
+  
+*/

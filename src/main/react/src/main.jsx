@@ -1,7 +1,7 @@
 
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+//import App from './App.jsx'
 
 // 기존코드
 //createRoot(document.getElementById('root')).render(<App />)
@@ -40,6 +40,7 @@ createRoot(document.querySelector("#root")).render(<Exam2/>)
 import Exam1 from './chapter10/Exam1.jsx'
 createRoot(document.querySelector("#root")).render(<Exam1/>)
 */
+/*
 // chapter 11 예제
 import Exam2 from './chapter11/Exam2.jsx'
 import {BrowserRouter} from 'react-router-dom'; // [1] 라이브러리 import 하기
@@ -48,4 +49,15 @@ createRoot(root).render(
 <BrowserRouter>
   <Exam2/>
 </BrowserRouter>
+*/
+// chapter 12 예제
+import App from './chapter12/App.jsx'
+import {BrowserRouter} from 'react-router-dom'; // [1] 라이브러리 import 하기
+ // [2] 최초 랜더링 되는 컴포넌트에 BrowerRouter 감싼다
+createRoot(root).render(
+<BrowserRouter>
+  <App/>
+</BrowserRouter>
+
+
 );

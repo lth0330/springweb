@@ -3,12 +3,6 @@ import { useEffect, useState } from "react"
 import { data } from "react-router-dom";
 
 
-
-
-
-
-
-
   function RandomUser(props) {
 
     const [myJSON, setMyJSON] = useState({ results: [] });  // 상태 변수 선언, 객체( 배열 ) 

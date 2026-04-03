@@ -60,9 +60,19 @@ createRoot(root).render(
   <App/>
 </BrowserRouter>
 */
-
+/*
 // practice1 예제
 import App from './practice1/App.jsx'
+import {BrowserRouter} from 'react-router-dom'; // [1] 라이브러리 import 하기
+ // [2] 최초 랜더링 되는 컴포넌트에 BrowerRouter 감싼다
+createRoot(root).render(
+<BrowserRouter>
+  <App/>
+</BrowserRouter>
+*/
+
+// reactweb 예제
+import App from './reactweb/App.jsx'
 import {BrowserRouter} from 'react-router-dom'; // [1] 라이브러리 import 하기
  // [2] 최초 랜더링 되는 컴포넌트에 BrowerRouter 감싼다
 createRoot(root).render(

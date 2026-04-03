@@ -36,7 +36,7 @@ function List(props) {
                                 <td> 
                                     <button> 상세보기 </button>
                                     <button> 수정 </button>
-                                    <button> 삭제 </button>
+                                    <button onClick={() => deleteTask(task.id)}> 삭제 </button>
                                 </td>
                             </tr>
                         </>)

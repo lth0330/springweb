@@ -2,15 +2,20 @@ package springweb.board.controller;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springweb.board.dto.BoardDto;
+import springweb.board.entity.BoardEntity;
 import springweb.board.service.BoardService;
 import springweb.member.service.JWTService2;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/board")
 @RequiredArgsConstructor
+@CrossOrigin( value = "http://localhost:5173" , exposedHeaders = "Authorization" , allowCredentials = "true")
 public class BoardController {
 
     private final BoardService boardService;
@@ -69,6 +74,38 @@ public class BoardController {
         boolean result = boardService.write( boardDto , loginMid );
         return  ResponseEntity.ok( result );
     }
+
+
+    // [1-4] 회원제 글등록 + 토큰 정ㅂ + 첨부 파일 + 쿠키
+    @PostMapping("/write4")
+    public ResponseEntity<?> write4(BoardDto boardDto, @CookieValue(value = "token", required = false) String token){
+
+        if (token == null){
+            return ResponseEntity.ok(false);    // 비로그인이라서 로그인 실패
+        }
+        // 3) 토큰에서 클레임(값) 꺼내기
+        String loginMid = jwtService.getClaim(token);
+        if (loginMid == null){return ResponseEntity.ok(false);}
+
+        // 4)서비스에게 입력받은 값과 세션에 저장된 값 전달한다.
+        boolean result = boardService.write( boardDto , loginMid );
+        return  ResponseEntity.ok( result );
+    }
+
+    // [2] 전체조회
+    @GetMapping("/list")
+    public ResponseEntity<?> findAll( ){
+        return ResponseEntity.ok( boardService.findAll() );
+    }
+    // [3] 개별조회
+    @GetMapping("/view")
+    public ResponseEntity<?> findById( @RequestParam Long bno ){
+        return ResponseEntity.ok( boardService.findById( bno ) );
+    }
+
+
+
+    // [3] 개별조회
 
 }
 

@@ -1,4 +1,3 @@
- 	
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom"

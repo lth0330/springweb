@@ -29,6 +29,7 @@ public class BoardEntity extends BaseTime {
     private String bfile;   // 세시물 첨부파일, 만약에 기시물당 첨부파일 여러개이면 앤티티 분리
 
 
+    private String mname;
     // * 단방향 : 한명의 회원이 여러개 게시물 작성한다.  1:N
     @ManyToOne
     @JoinColumn(name = "mno") @ToString.Exclude
@@ -40,6 +41,7 @@ public class BoardEntity extends BaseTime {
                 .btitle(btitle)
                 .bcontent(bcontent)
                 .bfile(bfile)
+
                 .mno(memberEntity.getMno())
                 .mid(memberEntity.getMid())
                 .createDate(getCreateDate().toString())

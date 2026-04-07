@@ -52,7 +52,8 @@ export default function Header(props) {
   return (<>
     <div>
       {/* 로그인 상태에 따른 메뉴 분기*/}
-      <Link to="/"> 홈</Link> |
+      <Link to="/"> 홈</Link> 
+      <Link to="/board"> 게시물</Link>
 
       {/* 비로그인 메뉴 */}
       {login == false && (<>

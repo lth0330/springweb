@@ -23,6 +23,7 @@ public class BoardDto {
     // + Dto 에는 앤티티 정보를 포함하지 않고 필요한 정보만 맴버변수로 구성한다.
     private Long mno;   // 회원번호
     private String mid; // 회원닉네임
+    private String mname;
 
     private String createDate;
     private String updateDate;

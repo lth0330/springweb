@@ -6,6 +6,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+  // [1] WebSocket 설치(https://start.spring.io) : implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
 @Configuration  // 빈(객체) (스프링컨테이너)등록, 스프링이 인식할 수 있도록 ,  IOC
 @EnableWebSocketMessageBroker   // [2] websocket + stomp 메세지 브로커 활성화
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
@@ -27,13 +29,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.setApplicationDestinationPrefixes("/app");
     }
 
-    // [6] websocket 접속 주소 설정 : 앤드ㅗ인트 ( 메세지의 종착점 )
+    // [6] websocket 접속 주소 설정 : 앤드 포인트 ( 메세지의 종착점 )
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
         // [7]
         registry.addEndpoint("/ws") // 앤드 포인트 ws:localhost:8080
-                //.setAllowedOrigins("http://localhost:5713)    // 특정 도메인만 허용
-                .setAllowedOriginPatterns("*");
+                //.setAllowedOrigins("http://localhost:5713")    // 특정 도메인만 허용
+                .setAllowedOriginPatterns("*"); // 요청 가능한 도메인들, "*" : 모든 모에인 허용 , CORS
     }
 }

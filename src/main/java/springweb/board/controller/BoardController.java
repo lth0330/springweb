@@ -97,15 +97,13 @@ public class BoardController {
     public ResponseEntity<?> findAll( ){
         return ResponseEntity.ok( boardService.findAll() );
     }
+
     // [3] 개별조회
     @GetMapping("/view")
     public ResponseEntity<?> findById( @RequestParam Long bno ){
         return ResponseEntity.ok( boardService.findById( bno ) );
     }
 
-
-
-    // [3] 개별조회
 
 }
 

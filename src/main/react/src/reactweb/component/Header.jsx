@@ -63,14 +63,16 @@ export default function Header(props) {
 
 
 
-      {/* 로그인 메뉴 */}
-      {login == true && (<>
-        <span> {user.mid}님</span> |
-        <Link to="/member/page"> 내정보</Link> |
-        <Link to="/board/write"> 글쓰기</Link> |
-        <button onClick={logout}> 로그아웃 </button>
-
-      </>)}
+       
+ 	
+            { /* 로그인 메뉴  */}
+            { login == true && ( <> 
+                <span> { user.mid } 님 </span> |
+                <Link to="/member/page"> 내정보 </Link> |
+                <Link to="/board/write"> 글쓰기 </Link> |
+                <Link to="/chat"> 채팅방 </Link> |
+                <button onClick={ logout }> 로그아웃 </button>
+            </> )}  
 
 
       <hr />

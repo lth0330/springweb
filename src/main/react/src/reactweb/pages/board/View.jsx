@@ -16,7 +16,7 @@ export default function View(props) {
   const findByid = async () => {
 
     try {
-      const response = await axios.get(`http://localhost:8080/board/view?bno=${bno}`);
+      const response = await axios.get(`http://localhost:8080/api/board/view?bno=${bno}`);
       const data = response.data;
       setBoard(data);
     } catch (e) { console.log(e); }
@@ -34,15 +34,14 @@ export default function View(props) {
       <div> 제목 : 테스트 </div>
 
     
-      <div dangerouslySetInnerHTML={{__html : board.bcontent}}> </div>
+      <div dangerouslySetInnerHTML={{__html : board.bcontent}}/> 
       <div>
-        { /* 만약에 첨ㅂ 파일이 존재하면 */
+        { /* 만약에 첨부 파일이 존재하면 */
           board.bfile && (
             <>
               <a href={`http:://localhost:8080/upload/${board.bfile}`} download> 
                 {board.bfile.split("_")[1]} 다운로드
               </a>
-
             </>
           )
         }

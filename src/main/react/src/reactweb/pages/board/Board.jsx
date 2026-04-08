@@ -38,7 +38,7 @@ export default function Board(props) {
               return (
                 <tr>
                   <td>{board.bno}</td>
-                  <td><Link to ={`/board/view?bno${board.bno}`}>{board.btitle}</Link></td>
+                  <td><Link to ={`/board/view?bno=${board.bno}`}>{board.btitle}</Link></td>
                   <td>{board.mname}</td>
                   <td>{board.createDate}</td>
                 </tr>

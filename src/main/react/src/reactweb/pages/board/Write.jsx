@@ -39,7 +39,7 @@ export default function Write(props) {
     const data = response.data
     if (data == true) {
       alert("글쓰기 성공");
-      Navigate("/board");
+      location.href="/";
     } else {
       alert("글쓰기 실패 ")
     }

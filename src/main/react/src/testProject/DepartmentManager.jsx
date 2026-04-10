@@ -62,22 +62,22 @@ export default function DepartmentManager() {
   };
 
 
-  const updateDepartment = async (dno) => {
+    const updateDepartment = async (dno) => {
 
     const upName = prompt("수정할 부서명 : ")
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/department/${dno}`,
-        { dName: upName }
+        `http://localhost:8080/api/department/${dno}`, 
+        {dName: upName}
       );
 
       const data = response.data
       if (data == true) {
-
-
+      
+ 
         alert("수정 성공");
-
+        
         getDepartment();
 
       }
@@ -94,7 +94,7 @@ export default function DepartmentManager() {
 
       <form className="dept-input" onSubmit={addDepartment}>
         <input
-          placeholder="부서명 입력" value={dName}
+           placeholder="부서명 입력" value={dName}
           onChange={(e) => setDName(e.target.value)}
         />
         <button type="submit">추가</button>
@@ -109,7 +109,7 @@ export default function DepartmentManager() {
         </thead>
         <tbody>
           {
-            departView.map((dept) => {
+            departView.map((dept) => (
               <tr key={dept.dno}>
                 <td>{dept.dName}</td>
                 <td>
@@ -122,7 +122,7 @@ export default function DepartmentManager() {
                   </span>
                 </td>
               </tr>
-            })
+            ))
           }
         </tbody>
       </table>

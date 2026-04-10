@@ -79,11 +79,13 @@ export default function EmployeeManager() {
         <div className="form-row">
 
           <select name="dName">
-
+            <option>부서를 선택하세요</option>
             {
               departView.map((dept) => {
-                <option>부서를 선택하세요</option>
+                return(<>
+                
                 <option  key={dept.dno}>{dept.dName}</option>
+                </>)
               })
             }
           </select>

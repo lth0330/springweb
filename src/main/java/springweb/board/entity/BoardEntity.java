@@ -28,8 +28,8 @@ public class BoardEntity extends BaseTime {
     @Column()   // 주로 첨부파일은 파일 자체를 저장하는게 아니라 파일을 위치(서버내 경로) 저장
     private String bfile;   // 세시물 첨부파일, 만약에 기시물당 첨부파일 여러개이면 앤티티 분리
 
-
     private String mname;
+
     // * 단방향 : 한명의 회원이 여러개 게시물 작성한다.  1:N
     @ManyToOne
     @JoinColumn(name = "mno") @ToString.Exclude

@@ -27,9 +27,7 @@ export default function Signup(props) {
     }
   }
 
-
   return (<>
-
     <div>
       <h3> 회원가입 페이지 </h3>
       <form onSubmit={signup}>

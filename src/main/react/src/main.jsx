@@ -70,7 +70,7 @@ createRoot(root).render(
   <App/>
 </BrowserRouter>
 */
-
+/*
 // reactweb 예제
 import App from './reactweb/App.jsx'
 import {BrowserRouter} from 'react-router-dom'; // [1] 라이브러리 import 하기
@@ -79,5 +79,16 @@ createRoot(root).render(
 <BrowserRouter>
   <App/>
 </BrowserRouter>
+*/
+
+import App from './testProject/App.jsx'
+import {BrowserRouter} from 'react-router-dom'; 
+createRoot(root).render(
+<BrowserRouter>
+  <App/>
+</BrowserRouter>
+
+
+
 
 );
